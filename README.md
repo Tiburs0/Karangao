@@ -1,27 +1,108 @@
 # Bradesco Boletos Downloader
 
-Script Python para automatizar o download de boletos do banco Bradesco.
+Script Python para automatizar o download**Opção 2: Conectar a Chrome Existente**
 
-## Pré-requisitos
+Esta opção permite usar uma sessão do Chrome onde você já está logado.
 
-- Python 3.6 ou superior
+1. Feche todas as instâncias do Chrome
+
+2. **Windows**: Abra o Chrome em modo debug:
+```cmd
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\chrome_debug"
+```
+
+   **Linux**: Abra o Chrome em modo debug:
+```bash
+google-chrome --remote-debugging-port=9222 --user-data-dir="/tmp/chrome_debug"
+```
+
+3. Faça login no Bradesco e navegue até a página de boletos
+
+4. Execute o script normalmente
+
+## 🔗 Criar Atalhos
+
+### Windows
+Veja instruções detalhadas em [CRIAR_ATALHO_WINDOWS.md](CRIAR_ATALHO_WINDOWS.md)
+
+**Resumo:**
+- Clique direito em `EXECUTAR_WINDOWS.bat` → Enviar para → Área de trabalho
+- Ou use o executável `.exe` gerado
+
+### Linux
+```bash
+# Criar atalho na área de trabalho
+cp download_boletos_bradesco.desktop ~/Desktop/
+chmod +x ~/Desktop/download_boletos_bradesco.desktop
+```
+
+## 🖥️ Compatibilidade
+
+- ✅ **Windows** (Windows 10/11)
+- ✅ **Linux** (Ubuntu, Debian, etc.)
+- ✅ **macOS** (não testado, mas deve funcionar)
+
+## 📋 Pré-requisitos
+
+- Python 3.8 ou superior
 - Google Chrome instalado
-- ChromeDriver compatível com sua versão do Chrome
+- Conexão com internet (para baixar ChromeDriver automaticamente)
 
-## Instalação
+## 📖 Documentação por Sistema
 
-1. Instale as dependências:
+- **Windows**: Leia [README_WINDOWS.md](README_WINDOWS.md) para instruções detalhadas
+- **Linux**: Continue lendo este arquivo
+
+## 🚀 Instalação
+
+### Windows
+
+**Método Rápido (Recomendado):**
+1. Dê duplo-clique em `EXECUTAR_WINDOWS.bat`
+2. O script instalará tudo automaticamente!
+
+**Método Manual:**
+```cmd
+pip install -r requirements.txt
+```
+
+### Linux
+
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Instale o ChromeDriver:
-   - Linux: `sudo apt-get install chromium-chromedriver`
-   - Ou baixe de: https://chromedriver.chromium.org/
+**Nota**: O ChromeDriver é baixado automaticamente pelo `webdriver-manager`
 
-## Modo de Uso
+## 🎯 Modo de Uso
 
-### Opção 1: Conectar a uma sessão já aberta (Recomendado)
+### 🪟 Windows
+
+**Opção 1: Duplo-Clique (Mais Fácil)**
+1. Execute `EXECUTAR_WINDOWS.bat`
+2. O Chrome abrirá automaticamente
+3. Faça login no Bradesco
+4. Navegue até "Boletos Registrados"
+5. Aguarde a janela do programa detectar automaticamente!
+
+**Opção 2: Criar Executável**
+1. Execute `BUILD_EXE.bat`
+2. Use o arquivo `.exe` gerado em `dist/`
+
+**Opção 3: Linha de Comando**
+```cmd
+python download_boletos_bradesco.py
+```
+
+### 🐧 Linux
+
+**Opção 1: Script Automático (Recomendado)**
+```bash
+python3 download_boletos_bradesco.py
+```
+O Chrome abrirá automaticamente!
+
+**Opção 2: Conectar a Chrome Existente**
 
 Esta opção permite usar uma sessão do Chrome onde você já está logado.
 
@@ -81,6 +162,26 @@ O script:
 
 - **Botão do boleto**: `//*[@id="boletoRegistradoDdaForm:listaBoletos_{indice}:Salvar"]`
 - **Botão de download**: `//*[@id="formSalvarComo:html"]/span`
+
+## 📁 Estrutura do Projeto
+
+```
+download_boleto_viviane/
+├── download_boletos_bradesco.py   # Script principal ⭐
+├── requirements.txt               # Dependências Python
+├── README.md                      # Este arquivo
+├── README_WINDOWS.md             # Guia detalhado Windows
+│
+├── EXECUTAR_WINDOWS.bat          # Launcher Windows 🪟
+├── BUILD_EXE.bat                 # Criar executável Windows
+├── CRIAR_ATALHO_WINDOWS.md       # Tutorial de atalhos Windows
+│
+├── 1_abrir_chrome_debug.sh       # Helper Linux 🐧
+├── COMO_USAR.sh                  # Guia interativo Linux
+├── modo_invisivel.sh             # Execução com Xvfb (Linux)
+│
+└── exemplo_uso_chrome_debug.py   # Exemplo de uso como biblioteca
+```
 
 ## Observações
 
