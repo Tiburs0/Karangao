@@ -12,6 +12,8 @@ Para usar este script:
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from download_boletos_bradesco import BradescoBoletosDownloader
 
 
@@ -25,8 +27,9 @@ def main():
         chrome_options = Options()
         chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
         
-        # Conecta ao Chrome
-        driver = webdriver.Chrome(options=chrome_options)
+        # Conecta ao Chrome usando webdriver-manager
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
         print("✓ Conectado com sucesso!")
         print(f"✓ URL atual: {driver.current_url}")
         print()

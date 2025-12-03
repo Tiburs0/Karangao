@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Download Boletos Bradesco
+Comment=Automatiza o download de boletos do Bradesco
+Exec=/bin/python3 /home/jm/github/Karangao_download_boleto/download_boletos_bradesco.py
+Icon=document-save
+Terminal=true
+Categories=Utility;Finance;
+StartupNotify=true

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Background Tabs",
+  "version": "1.0",
+  "description": "Força novas abas a abrirem em segundo plano",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
